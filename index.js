@@ -111,45 +111,4 @@ Confirm.hide = function() {
   }
 };
 
-// Confirm.alert = function(message, callback, options) {
-//   var defaults = {
-//     message: message,
-//     title: '',
-//     cancelTpl: '',
-//     closeTpl: '',
-//     onConfirm: function() {
-//       callback && callback();
-//       this.hide();
-//     }
-//   };
-//   new Confirm($.extend(null, defaults, options)).show().after('hide', function() {
-//     this.destroy();
-//   });
-// };
-
-// Confirm.confirm = function(message, title, onConfirm, onCancel, options) {
-//   // support confirm(message, title, onConfirm, options)
-//   if (typeof onCancel === 'object' && !options) {
-//     options = onCancel;
-//   }
-
-//   var defaults = {
-//     message: message,
-//     title: title || '确认框',
-//     closeTpl: '',
-//     onConfirm: function() {
-//       onConfirm && onConfirm();
-//       this.hide();
-//     },
-//     onCancel: function() {
-//       onCancel && onCancel();
-//       this.hide();
-//     }
-//   };
-
-//   new Confirm($.extend(null, defaults, options)).show().after('hide', function() {
-//     this.destroy();
-//   });
-// };
-
 module.exports = Confirm;
