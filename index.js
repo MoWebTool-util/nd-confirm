@@ -11,8 +11,6 @@
 var $ = require('jquery'),
   Dialog = require('nd-dialog');
 
-var template = require('./src/confirm.handlebars');
-
 // Confirm
 // -------
 // Confirm 是一个有基础模板和样式的对话框组件。
@@ -25,6 +23,7 @@ var Confirm = Dialog.extend({
     cancelTpl: '<a class="ui-dialog-button-white" href="javascript:;">取消</a>',
 
     message: '默认内容',
+    partial: require('./src/confirm.handlebars'),
 
     afterHide: 'destroy'
   },
@@ -32,16 +31,14 @@ var Confirm = Dialog.extend({
   setup: function() {
     Confirm.superclass.setup.call(this);
 
-    var model = {
+    this.set('content', this.get('partial')({
       classPrefix: this.get('classPrefix'),
       message: this.get('message'),
       title: this.get('title'),
       confirmTpl: this.get('confirmTpl'),
       cancelTpl: this.get('cancelTpl'),
       hasFoot: this.get('confirmTpl') || this.get('cancelTpl')
-    };
-
-    this.set('content', template(model));
+    }));
   },
 
   events: {
