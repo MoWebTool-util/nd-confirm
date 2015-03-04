@@ -6,12 +6,8 @@
 
 'use strict';
 
-/*jshint maxparams:4*/
-
 var $ = require('jquery'),
   Dialog = require('nd-dialog');
-
-var template = require('./src/confirm.handlebars');
 
 // Confirm
 // -------
@@ -25,6 +21,7 @@ var Confirm = Dialog.extend({
     cancelTpl: '<a class="ui-dialog-button-white" href="javascript:;">取消</a>',
 
     message: '默认内容',
+    partial: require('./src/confirm.handlebars'),
 
     afterHide: 'destroy'
   },
@@ -32,16 +29,14 @@ var Confirm = Dialog.extend({
   setup: function() {
     Confirm.superclass.setup.call(this);
 
-    var model = {
+    this.set('content', this.get('partial')({
       classPrefix: this.get('classPrefix'),
       message: this.get('message'),
       title: this.get('title'),
       confirmTpl: this.get('confirmTpl'),
       cancelTpl: this.get('cancelTpl'),
       hasFoot: this.get('confirmTpl') || this.get('cancelTpl')
-    };
-
-    this.set('content', template(model));
+    }));
   },
 
   events: {
@@ -75,10 +70,12 @@ var Confirm = Dialog.extend({
 
 var instance;
 
+/*jshint maxparams:4*/
 Confirm.show = function(message, onConfirm, onCancel, options) {
   var defaults = {
     message: message,
-    title: '确认框'
+    title: '确认框',
+    afterHide: null
   };
 
   defaults = $.extend(null, defaults, options);
@@ -86,10 +83,7 @@ Confirm.show = function(message, onConfirm, onCancel, options) {
   if (instance) {
     instance.set(defaults);
   } else {
-    instance = new Confirm(defaults).after('hide', function() {
-      // reset instance
-      instance = null;
-    });
+    instance = new Confirm(defaults);
   }
 
   if (onConfirm) {
