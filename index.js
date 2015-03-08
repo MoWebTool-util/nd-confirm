@@ -6,8 +6,6 @@
 
 'use strict';
 
-/*jshint maxparams:4*/
-
 var $ = require('jquery'),
   Dialog = require('nd-dialog');
 
@@ -72,10 +70,12 @@ var Confirm = Dialog.extend({
 
 var instance;
 
+/*jshint maxparams:4*/
 Confirm.show = function(message, onConfirm, onCancel, options) {
   var defaults = {
     message: message,
-    title: '确认框'
+    title: '确认框',
+    afterHide: null
   };
 
   defaults = $.extend(null, defaults, options);
@@ -83,10 +83,7 @@ Confirm.show = function(message, onConfirm, onCancel, options) {
   if (instance) {
     instance.set(defaults);
   } else {
-    instance = new Confirm(defaults).after('hide', function() {
-      // reset instance
-      instance = null;
-    });
+    instance = new Confirm(defaults);
   }
 
   if (onConfirm) {
