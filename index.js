@@ -17,8 +17,8 @@ var Confirm = Dialog.extend({
   attrs: {
     title: '默认标题',
 
-    confirmTpl: '<a class="ui-dialog-button-orange" href="javascript:;">确定</a>',
-    cancelTpl: '<a class="ui-dialog-button-white" href="javascript:;">取消</a>',
+    confirmTpl: '<a class="ui-dialog-button" href="javascript:;">确定</a>',
+    cancelTpl: '<a class="ui-dialog-button" href="javascript:;">取消</a>',
 
     message: '默认内容',
     partial: require('./src/confirm.handlebars'),
