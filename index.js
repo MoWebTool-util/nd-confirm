@@ -74,7 +74,7 @@ var instance;
 Confirm.show = function(message, onConfirm, onCancel, options) {
   var defaults = {
     message: message,
-    title: '确认框',
+    title: '请确认',
     afterHide: null
   };
 
