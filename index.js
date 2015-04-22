@@ -15,6 +15,7 @@ var $ = require('jquery'),
 var Confirm = Dialog.extend({
 
   attrs: {
+    className: 'ui-dialog-confirm',
     title: '默认标题',
 
     confirmTpl: '<a class="ui-dialog-button" href="javascript:;">确定</a>',
