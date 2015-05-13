@@ -1,6 +1,6 @@
 # nd-confirm
 
-[![spm version](http://spmjs.io/badge/nd-confirm)](http://spmjs.io/package/nd-confirm)
+[![spm version](http://spm.crossjs.com/badge/nd-confirm)](http://spm.crossjs.com/package/nd-confirm)
 
 > 基于 dialog 的标准模态对话框。fork 自 [arale-dialog](https://github.com/aralejs/dialog)
 
