@@ -104,6 +104,7 @@ Confirm.show = function(message, onConfirm, onCancel, options) {
 Confirm.hide = function() {
   if (instance) {
     instance.hide();
+    instance = null;
   }
 };
 
