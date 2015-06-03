@@ -75,25 +75,26 @@ var instance;
 Confirm.show = function(message, onConfirm, onCancel, options) {
   var defaults = {
     message: message,
-    title: '请确认',
-    afterHide: null
+    title: '请确认'
   };
 
-  defaults = $.extend(null, defaults, options);
+  if (options) {
+    $.extend(defaults, options);
+  }
 
   if (instance) {
     instance.set(defaults);
+    instance.off('confirm');
+    instance.off('cancel');
   } else {
     instance = new Confirm(defaults);
   }
 
   if (onConfirm) {
-    instance.off('confirm');
     instance.on('confirm', onConfirm);
   }
 
   if (onCancel) {
-    instance.off('cancel');
     instance.on('cancel', onCancel);
   }
 
