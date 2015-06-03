@@ -87,7 +87,9 @@ Confirm.show = function(message, onConfirm, onCancel, options) {
     instance.off('confirm');
     instance.off('cancel');
   } else {
-    instance = new Confirm(defaults);
+    instance = new Confirm(defaults).after('hide', function() {
+      instance = null;
+    });
   }
 
   if (onConfirm) {
@@ -104,7 +106,6 @@ Confirm.show = function(message, onConfirm, onCancel, options) {
 Confirm.hide = function() {
   if (instance) {
     instance.hide();
-    instance = null;
   }
 };
 
