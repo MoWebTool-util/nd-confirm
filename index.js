@@ -1,13 +1,12 @@
 /**
- * Description: index.js
- * Author: crossjs <liwenfu@crossjs.com>
- * Date: 2014-12-15 21:20:26
+ * @module Dialog
+ * @author crossjs <liwenfu@crossjs.com>
  */
 
 'use strict';
 
-var $ = require('jquery'),
-  Dialog = require('nd-dialog');
+var $ = require('jquery');
+var Dialog = require('nd-dialog');
 
 // Confirm
 // -------
@@ -18,8 +17,8 @@ var Confirm = Dialog.extend({
     className: 'ui-dialog-confirm',
     title: '默认标题',
 
-    confirmTpl: '<a class="ui-dialog-button" href="javascript:;">确定</a>',
-    cancelTpl: '<a class="ui-dialog-button" href="javascript:;">取消</a>',
+    confirmTpl: '<a class="ui-dialog-button" href="javascript:;">' + '确定' + '</a>',
+    cancelTpl: '<a class="ui-dialog-button" href="javascript:;">' + '取消' + '</a>',
 
     message: '默认内容',
     partial: require('./src/confirm.handlebars'),
