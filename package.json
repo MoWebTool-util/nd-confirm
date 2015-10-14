@@ -1,6 +1,6 @@
 {
   "name": "nd-confirm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "基于 dialog 的标准模态对话框。",
   "keywords": [],
   "homepage": "https://github.com/ndfront/nd-confirm",
