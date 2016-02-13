@@ -6,6 +6,7 @@
 'use strict';
 
 var $ = require('jquery');
+var __ = require('nd-i18n');
 var Dialog = require('nd-dialog');
 
 // Confirm
@@ -15,12 +16,12 @@ var Confirm = Dialog.extend({
 
   attrs: {
     className: 'ui-dialog-confirm',
-    title: '默认标题',
+    title: __('默认标题'),
 
-    confirmTpl: '<a class="ui-dialog-button" href="javascript:;">' + '确定' + '</a>',
-    cancelTpl: '<a class="ui-dialog-button" href="javascript:;">' + '取消' + '</a>',
+    confirmTpl: '<a class="ui-dialog-button" href="javascript:;">' + __('确定') + '</a>',
+    cancelTpl: '<a class="ui-dialog-button" href="javascript:;">' + __('取消') + '</a>',
 
-    message: '默认内容',
+    message: __('默认内容'),
     partial: require('./src/confirm.handlebars'),
 
     afterHide: 'destroy'
@@ -74,7 +75,7 @@ var instance;
 Confirm.show = function(message, onConfirm, onCancel, options) {
   var defaults = {
     message: message,
-    title: '请确认'
+    title: __('请确认')
   };
 
   if (options) {
