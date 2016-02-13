@@ -1,17 +1,13 @@
 /**
- * Description: index.js
- * Author: crossjs <liwenfu@crossjs.com>
- * Date: 2014-12-15 21:20:26
+ * @module Dialog
+ * @author crossjs <liwenfu@crossjs.com>
  */
 
 'use strict';
 
-/*jshint maxparams:4*/
-
-var $ = require('jquery'),
-  Dialog = require('nd-dialog');
-
-var template = require('./src/confirm.handlebars');
+var $ = require('jquery');
+var __ = require('nd-i18n');
+var Dialog = require('nd-dialog');
 
 // Confirm
 // -------
@@ -19,12 +15,14 @@ var template = require('./src/confirm.handlebars');
 var Confirm = Dialog.extend({
 
   attrs: {
-    title: '默认标题',
+    className: 'ui-dialog-confirm',
+    title: __('默认标题'),
 
-    confirmTpl: '<a class="ui-dialog-button-orange" href="javascript:;">确定</a>',
-    cancelTpl: '<a class="ui-dialog-button-white" href="javascript:;">取消</a>',
+    confirmTpl: '<a class="ui-dialog-button" href="javascript:;">' + __('确定') + '</a>',
+    cancelTpl: '<a class="ui-dialog-button" href="javascript:;">' + __('取消') + '</a>',
 
-    message: '默认内容',
+    message: __('默认内容'),
+    partial: require('./src/confirm.handlebars'),
 
     afterHide: 'destroy'
   },
@@ -32,16 +30,14 @@ var Confirm = Dialog.extend({
   setup: function() {
     Confirm.superclass.setup.call(this);
 
-    var model = {
+    this.set('content', this.get('partial')({
       classPrefix: this.get('classPrefix'),
       message: this.get('message'),
       title: this.get('title'),
       confirmTpl: this.get('confirmTpl'),
       cancelTpl: this.get('cancelTpl'),
       hasFoot: this.get('confirmTpl') || this.get('cancelTpl')
-    };
-
-    this.set('content', template(model));
+    }));
   },
 
   events: {
@@ -75,30 +71,32 @@ var Confirm = Dialog.extend({
 
 var instance;
 
+/*jshint maxparams:4*/
 Confirm.show = function(message, onConfirm, onCancel, options) {
   var defaults = {
     message: message,
-    title: '确认框'
+    title: __('请确认')
   };
 
-  defaults = $.extend(null, defaults, options);
+  if (options) {
+    $.extend(defaults, options);
+  }
 
   if (instance) {
     instance.set(defaults);
+    instance.off('confirm');
+    instance.off('cancel');
   } else {
     instance = new Confirm(defaults).after('hide', function() {
-      // reset instance
       instance = null;
     });
   }
 
   if (onConfirm) {
-    instance.off('confirm');
     instance.on('confirm', onConfirm);
   }
 
   if (onCancel) {
-    instance.off('cancel');
     instance.on('cancel', onCancel);
   }
 
