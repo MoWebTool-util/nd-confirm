@@ -2,7 +2,7 @@
 
 var Confirm = require('../index');
 var expect = require('expect.js');
-var $ = require('jquery');
+var $ = require('nd-jquery');
 var mask = require('nd-mask');
 
 // require('../src/confirm.css');
