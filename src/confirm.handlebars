@@ -1,21 +1,21 @@
 {{#if title}}
 <div class="{{classPrefix}}-head" data-role="head">
-  <div class="{{classPrefix}}-title" data-role="title">{{{title}}}</div>
+  <div class="{{classPrefix}}-title" data-role="title">{{{__ title}}}</div>
 </div>
 {{/if}}
 <div class="{{classPrefix}}-main" data-role="main">
-  <div class="{{classPrefix}}-message" data-role="message">{{{message}}}</div>
+  <div class="{{classPrefix}}-message" data-role="message">{{{__ message}}}</div>
 </div>
 {{#if hasFoot}}
 <div class="{{classPrefix}}-foot" data-role="foot">
   {{#if confirmTpl}}
   <div class="{{classPrefix}}-confirm-box" data-role="confirm">
-    {{{confirmTpl}}}
+    <a class="ui-dialog-button" href="javascript:;">{{__ confirmTpl}}</a>
   </div>
   {{/if}}
   {{#if cancelTpl}}
   <div class="{{classPrefix}}-cancel-box" data-role="cancel">
-    {{{cancelTpl}}}
+    <a class="ui-dialog-button" href="javascript:;">{{__ cancelTpl}}</a>
   </div>
   {{/if}}
 </div>

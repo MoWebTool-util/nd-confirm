@@ -6,7 +6,6 @@
 'use strict';
 
 var $ = require('nd-jquery');
-var __ = require('nd-i18n');
 var Dialog = require('nd-dialog');
 
 // Confirm
@@ -14,15 +13,18 @@ var Dialog = require('nd-dialog');
 // Confirm 是一个有基础模板和样式的对话框组件。
 var Confirm = Dialog.extend({
 
+  templatePartials: {
+    content: require('./src/confirm.handlebars')
+  },
+
   attrs: {
     className: 'ui-dialog-confirm',
-    title: __('默认标题'),
+    title: '默认标题',
 
-    confirmTpl: '<a class="ui-dialog-button" href="javascript:;">' + __('确定') + '</a>',
-    cancelTpl: '<a class="ui-dialog-button" href="javascript:;">' + __('取消') + '</a>',
+    confirmTpl: '确定',
+    cancelTpl: '取消',
 
-    message: __('默认内容'),
-    partial: require('./src/confirm.handlebars'),
+    message: '默认内容',
 
     afterHide: 'destroy'
   },
@@ -30,41 +32,41 @@ var Confirm = Dialog.extend({
   setup: function() {
     Confirm.superclass.setup.call(this);
 
-    this.set('content', this.get('partial')({
+    this.renderPartialTemplate('content', {
       classPrefix: this.get('classPrefix'),
       message: this.get('message'),
       title: this.get('title'),
       confirmTpl: this.get('confirmTpl'),
       cancelTpl: this.get('cancelTpl'),
       hasFoot: this.get('confirmTpl') || this.get('cancelTpl')
-    }));
+    });
   },
 
   events: {
-    'click [data-role=confirm]': function(e) {
+    'click [data-role="confirm"]': function(e) {
       e.preventDefault();
       this.trigger('confirm') !== false && this.hide();
     },
-    'click [data-role=cancel]': function(e) {
+    'click [data-role="cancel"]': function(e) {
       e.preventDefault();
       this.trigger('cancel') !== false && this.hide();
     }
   },
 
   _onChangeMessage: function(val) {
-    this.$('[data-role=message]').html(val);
+    this.$('[data-role="message"]').html(val);
   },
 
   _onChangeTitle: function(val) {
-    this.$('[data-role=title]').html(val);
+    this.$('[data-role="title"]').html(val);
   },
 
   _onChangeConfirmTpl: function(val) {
-    this.$('[data-role=confirm]').html(val);
+    this.$('[data-role="confirm"]').html(val);
   },
 
   _onChangeCancelTpl: function(val) {
-    this.$('[data-role=cancel]').html(val);
+    this.$('[data-role="cancel"]').html(val);
   }
 
 });
@@ -75,7 +77,9 @@ var instance;
 Confirm.show = function(message, onConfirm, onCancel, options) {
   var defaults = {
     message: message,
-    title: __('请确认')
+    title: '请确认'
+    //confirmTpl: __('确定'),
+    //cancelTpl: __('取消')
   };
 
   if (options) {
